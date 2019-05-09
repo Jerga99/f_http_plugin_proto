@@ -1,0 +1,26 @@
+import 'package:flutter_test/flutter_test.dart';
+import '../lib/src/config.dart';
+import '../lib/src/base_config.dart';
+import '../lib/src/base_interceptor.dart';
+
+void main() {
+  group('Base Tests', () {
+    test('sets config', () {
+      var config = BaseConfig();
+      expect(config.headers['Content-Type'], equals("application/json"));
+    });
+
+    test('sets custom header', () {
+      var interceptors = BaseInterceptor();
+      var config = BaseConfig();
+      interceptors.request.use((Config config) {
+        config.headers['My-Custom-Header-Key'] = 'My-Custom-Header-Value';
+        return config;
+      });
+
+      interceptors.request.configure(config);
+
+      expect(config.headers['My-Custom-Header-Key'], equals("My-Custom-Header-Value"));
+    });
+  });
+}
