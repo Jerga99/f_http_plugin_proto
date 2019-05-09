@@ -1,8 +1,8 @@
 name: f_http
 description: A new Flutter package project.
 version: 0.0.1
-author: Filip Jerga
-homepage:
+author: Filip Jerga <jerga99@gmail.com>
+homepage: https://github.com/Jerga99/f_http_plugin_proto
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
