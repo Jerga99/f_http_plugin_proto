@@ -15,9 +15,9 @@ class HttpService {
     _configure(options);
   }
 
-  void _applyHeaders(headers) {
+  void _applyHeaders(Map<String, String> headers) {
     if (headers != null) {
-        headers.map((key, value) {
+        headers.forEach((String key, String value) {
         _config.headers[key] = value;
       });
     }
@@ -37,14 +37,14 @@ class HttpService {
     }
   }
 
-  Future<Response> get(dynamic url, {Map<String, String> headers}) {
-    interceptors.request.configure(_config);
+  Future<Response> get(dynamic url, {Map<String, String> headers}) async {
+    await interceptors.request.configure(_config);
     _applyHeaders(headers);
     return _client.get(_buildUrl(url), headers: _config.headers);
   }
 
-  Future<Response> post(dynamic url, {Map<String, String> headers, dynamic body}) {
-    interceptors.request.configure(_config);
+  Future<Response> post(dynamic url, {Map<String, String> headers, dynamic body}) async {
+    await interceptors.request.configure(_config);
     _applyHeaders(headers);
     return _client.post(_buildUrl(url), headers: _config.headers, body: body);
   }

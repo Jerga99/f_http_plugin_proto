@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../lib/src/config.dart';
 import '../lib/src/base_config.dart';
 import '../lib/src/base_interceptor.dart';
+import '../lib/f_http.dart';
 
 void main() {
   group('Base Tests', () {
