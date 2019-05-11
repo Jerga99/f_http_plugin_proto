@@ -1,7 +1,7 @@
 import 'config.dart';
 
 abstract class Request {
-  Config Function(Config) configure;
+  dynamic Function(Config) configure;
 
-   void use(Config Function(Config) configFunction);
+   void use(dynamic Function(Config) configFunction);
 }
