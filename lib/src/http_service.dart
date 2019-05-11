@@ -37,15 +37,23 @@ class HttpService {
     }
   }
 
-  Future<Response> get(dynamic url, {Map<String, String> headers}) async {
-    await interceptors.request.configure(_config);
+  _resetConfig() {
+    _config = new BaseConfig();
+  }
+
+  _setup(headers) async {
+    _resetConfig();
+    await interceptors.request.configure(BaseConfig());
     _applyHeaders(headers);
+  }
+
+  Future<Response> get(dynamic url, {Map<String, String> headers}) async {
+    _setup(headers);
     return _client.get(_buildUrl(url), headers: _config.headers);
   }
 
   Future<Response> post(dynamic url, {Map<String, String> headers, dynamic body}) async {
-    await interceptors.request.configure(_config);
-    _applyHeaders(headers);
+    _setup(headers);
     return _client.post(_buildUrl(url), headers: _config.headers, body: body);
   }
 }
