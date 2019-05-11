@@ -48,12 +48,12 @@ class HttpService {
   }
 
   Future<Response> get(dynamic url, {Map<String, String> headers}) async {
-    _setup(headers);
+    await _setup(headers);
     return _client.get(_buildUrl(url), headers: _config.headers);
   }
 
   Future<Response> post(dynamic url, {Map<String, String> headers, dynamic body}) async {
-    _setup(headers);
+    await _setup(headers);
     return _client.post(_buildUrl(url), headers: _config.headers, body: body);
   }
 }
