@@ -43,7 +43,7 @@ class HttpService {
 
   _setup(headers) async {
     _resetConfig();
-    await interceptors.request.configure(BaseConfig());
+    await interceptors.request.configure(_config);
     _applyHeaders(headers);
   }
 
