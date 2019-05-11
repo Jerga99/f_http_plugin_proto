@@ -26,6 +26,11 @@ void main() {
 
     test('req', () async {
       var service = HttpService.create({'baseURL': 'http://localhost:3001'});
+
+      service.interceptors.request.use((config) {
+        return config;
+      });
+
       var res = await service.get('/api/v1/meetups');
       expect(res.statusCode, equals(200));
     });
